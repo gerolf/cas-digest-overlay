@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="result">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="digest" type="xs:string"/>
+				<xs:element name="error" type="ErrorType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="ErrorType">
+		<xs:sequence>
+			<xs:element name="error_code" type="xs:string"/>
+			<xs:element name="error_msg" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
