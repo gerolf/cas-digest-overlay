@@ -32,7 +32,7 @@ public class LocalDigestValidatorTest {
 		String expected = SHA(SHARED_SECRET + TICKET + USERID, ENCODING, HASHFUNCTION);
 		assertEquals(expected, responseDigest);
 	}
-
+		
 	// test good path other secret
 	@Test
 	public void testDigestCorrectWithOtherSecret() throws InvalidDigestException, NoSuchAlgorithmException, UnsupportedEncodingException {

@@ -4,6 +4,7 @@ import junit.framework.Assert;
 
 import org.jasig.cas.authentication.handler.DrupalHandler;
 import org.jasig.cas.authentication.principal.UsernamePasswordCredentials;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -12,6 +13,7 @@ public class DrupalHandlerTest {
 	private DrupalHandler client = new DrupalHandler("http://107.20.87.153/drupal/?q=api/user_service/user/auth");
 
 	@Test
+	@Ignore
 	public void handlerReturnsFailedLogin() throws Exception {
 		UsernamePasswordCredentials credentials = new UsernamePasswordCredentials();
 		credentials.setUsername("johny");
@@ -20,6 +22,7 @@ public class DrupalHandlerTest {
 	}
 
 	@Test
+	@Ignore
 	public void handlerReturnsSucceededLogin() throws Exception {
 		UsernamePasswordCredentials credentials = new UsernamePasswordCredentials();
 		credentials.setUsername("john");

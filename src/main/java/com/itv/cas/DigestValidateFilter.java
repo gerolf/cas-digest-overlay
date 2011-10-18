@@ -37,7 +37,8 @@ public class DigestValidateFilter implements Filter {
 	public void init(FilterConfig config) throws ServletException {
 		digestprops = new DigestValidatorProperties();
 		if (digestprops.getParameters().getProperty("validator").equalsIgnoreCase("webservice")) {
-			String digestServiceURL = config.getInitParameter(DIGEST_SERVICE_URL_PARAM);
+			//String digestServiceURL = config.getInitParameter(DIGEST_SERVICE_URL_PARAM);
+			String digestServiceURL = digestprops.getParameters().getProperty(DIGEST_SERVICE_URL_PARAM);		
 			if (isBlank(digestServiceURL)) {
 				throw new ServletException("init-param " + DIGEST_SERVICE_URL_PARAM + " was not set");
 			}

@@ -55,10 +55,9 @@
 	<filter>
 		<filter-name>ITVDigestFilter</filter-name>
 		<filter-class>com.itv.cas.DigestValidateFilter</filter-class>
-		<init-param>
-			<param-name>digestServiceURL</param-name>
-			<param-value>http://107.20.87.153:8080/DigestValidatorMock/validateDigest</param-value>
-		</init-param>
+		<!-- 
+		  THE CONFIGURATION FOR THE DIGEST VALIDATION HAS MOVED TO WEB-INF/classes/digestvalidation.properties
+		 -->
 	</filter>
 
     <filter-mapping>
@@ -80,6 +79,11 @@
 		<filter-name>ITVDigestFilter</filter-name>
 		<url-pattern>/validate</url-pattern>
 	</filter-mapping>
+	
+	<filter-mapping>
+        <filter-name>ITVDigestFilter</filter-name>
+        <url-pattern>/proxyValidate</url-pattern>
+    </filter-mapping>
 
 	<!--
 		- Configures Log4J for this web app.

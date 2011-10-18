@@ -30,7 +30,7 @@ public class DrupalHandler extends AbstractUsernamePasswordAuthenticationHandler
 	private static final Logger logger = LoggerFactory.getLogger(DrupalHandler.class);
 	private String URL;
 	private static JAXBContext jaxbContext;
-	
+	private HttpClient httpClient;
 	
 	public DrupalHandler(String URL) {
 		super();
@@ -38,6 +38,7 @@ public class DrupalHandler extends AbstractUsernamePasswordAuthenticationHandler
 		if (StringUtils.isBlank(this.URL)) {
 			logger.error("Invalid URL specified for authentication against Drupal userbase.");
 		}
+		httpClient = new DefaultHttpClient();
 	}
 
 	@SuppressWarnings("serial")
@@ -60,7 +61,7 @@ public class DrupalHandler extends AbstractUsernamePasswordAuthenticationHandler
 		} catch (IOException ioe) {
 			throw new AuthenticationException("AuthHandlerException") {};
 		}
-		HttpClient httpClient = new DefaultHttpClient();
+		
 		HttpPost method = new HttpPost(this.URL);
 		method.setEntity(entity);
 		method.addHeader("Accept","application/xml");
@@ -95,5 +96,10 @@ public class DrupalHandler extends AbstractUsernamePasswordAuthenticationHandler
 			jaxbContext = JAXBContext.newInstance(XML_PACKAGE);
 		}
 		return jaxbContext;
+	}
+
+	// for testing and mocking purposes
+	public void setHttpClient(HttpClient httpClient) {
+		this.httpClient = httpClient;
 	}
 }

@@ -29,6 +29,8 @@ public class DigestValidationWSClient {
 	static final String SERVICE_URL_PARAM = "Service_name";
 	static final String DIGEST_PARAM = "Digest";
 	static final String TICKET_PARAM = "service_ticket";
+	
+	private HttpClient httpClient;
 
 	private final Logger logger = Logger.getLogger(DigestValidateFilter.class);
 
@@ -36,6 +38,7 @@ public class DigestValidationWSClient {
 
 	public DigestValidationWSClient(String url) {
 		this.url = url;
+		httpClient = new DefaultHttpClient();
 	}
 
 	public String validateDigest(String digest, String ticket, String serviceUrl, String userId) throws InvalidDigestException,
@@ -48,7 +51,6 @@ public class DigestValidationWSClient {
 		params.add(new BasicNameValuePair(TICKET_PARAM, ticket));
 		UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
 
-		HttpClient httpClient = new DefaultHttpClient();
 		HttpPost method = new HttpPost(url);
 		method.setEntity(entity);
 
@@ -91,6 +93,11 @@ public class DigestValidationWSClient {
 		String errorCode = result.getError().getErrorCode();
 		logger.debug("Result error code: " + errorCode);
 		return isNotBlank(errorCode);
+	}
+
+	// For test/mock purposes
+	public void setHttpClient(HttpClient httpClient) {
+		this.httpClient = httpClient;
 	}
 
 }
