@@ -11,6 +11,13 @@
     <cas-version>3.4.8</cas-version>
   </properties>
   
+  <repositories>
+    <repository>
+        <id>nexus</id>
+        <url>http://project.dataflow.be:8081/nexus/content/groups/public</url>
+    </repository>
+  </repositories>
+  
   <build>
      <plugins>
             <plugin>
